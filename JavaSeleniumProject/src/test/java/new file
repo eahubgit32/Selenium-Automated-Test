@@ -1,0 +1,26 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class SeleniumTest {
+
+    public static void main(String[] args){
+
+        System.setProperty("java.io.tmpdir", "/home/aw6/tmp");
+        WebDriver driver = new FirefoxDriver();
+
+        driver.navigate().to("http://eaapp.somee.com");
+
+        driver.manage().window().fullscreen();
+
+        //driver.findElement(By.linkText("/Account/ForgotPassword"));
+        //By locator = By.linkText("/Account/ForgotPassword");
+
+        WebElement element = driver.findElement(By.linkText("/a[href*='/Account/ForgotPassword']"));
+
+        element.click();
+    }
+}
