@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class SeleniumTest {
+public class TestFile2 {
 
     public static void main(String[] args){
 
@@ -18,17 +18,24 @@ public class SeleniumTest {
         createEmployee(driver);
         searchEmployee(driver);
 
-        driver.quit();
+        //driver.quit();
         System.out.println("The automation has finished Exiting...");
     }
 
     public static void LogIn(WebDriver driver){
 
+        WebElement loginLink = driver.findElement(By.linkText("Login"));
+        loginLink.click();
 
-    UIElementExtension.performClick(driver, By.linkText("Login"));
-    UIElementExtension.performSendKeys(driver, By.id("UserName"), "admin");
-    UIElementExtension.performSendKeys(driver, By.id("Password"), "password");
-    UIElementExtension.performClick(driver, By.xpath("/html/body/div[1]/div/div[2]/form/button"));
+        WebElement userName = driver.findElement(By.id("UserName"));
+        userName.sendKeys("admin");
+
+        WebElement passWord = driver.findElement(By.id("Password"));
+        passWord.sendKeys("password");
+
+        WebElement signIn= driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/form/button"));
+        signIn.click();
+
 
     }
 
