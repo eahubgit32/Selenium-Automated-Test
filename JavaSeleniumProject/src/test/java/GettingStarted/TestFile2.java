@@ -1,3 +1,5 @@
+package GettingStarted;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +19,24 @@ public class TestFile2 {
         LogIn(driver);
         createEmployee(driver);
         searchEmployee(driver);
+
+//        while (true) {
+//            searchEmployee(driver); // Refresh the table results
+//
+//            // Check if any row contains "Sora"
+//            // Better locator: finds the <span> containing 'Sora' in the table
+//            List<WebElement> results = driver.findElements(By.xpath("//table//span[contains(text(), 'Sora')]"));
+//
+//            if (results.size() > 0) {
+//                System.out.println("Sora found. Proceeding with deletion...");
+//                performDeletion(driver);
+//            } else {
+//                System.out.println("No more instances of Sora found.");
+//                break; // Exit the loop when no results are left
+//            }
+//        }
+
+
 
         //driver.quit();
         System.out.println("The automation has finished Exiting...");
@@ -63,4 +83,10 @@ public class TestFile2 {
         driver.findElement(By.name("searchTerm")).sendKeys("sora");
         driver.findElement(By.xpath("/html/body/div[1]/main/form/div/button")).click();
     }
+
 }
+
+
+
+
+
