@@ -15,5 +15,10 @@ public class EmployeeListPage {
         driver.findElement(By.xpath(text));
         return new EmployeeListPage(driver);
     }
+
+    public EmployeeListPage performClickingCreateNewEmployee(){
+
+        return new EmployeeListPage(driver);
+    }
 }
 

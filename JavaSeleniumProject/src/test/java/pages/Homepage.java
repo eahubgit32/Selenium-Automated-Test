@@ -28,7 +28,7 @@ public class Homepage {
     }
 
     public CreateEmployeePage creationOfNewEmployee(){
-        driver.findElement(createNewEmployee);
+        driver.findElement(createNewEmployee).click();
         return new CreateEmployeePage(driver);
     }
 
