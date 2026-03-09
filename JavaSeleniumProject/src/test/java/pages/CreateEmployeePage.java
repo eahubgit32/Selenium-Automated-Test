@@ -2,7 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class CreateEmployeePage {
 
@@ -13,32 +16,21 @@ public class CreateEmployeePage {
         this.driver = driver;
     }
 
-    private By iDentification = By.id("Grade");
+    //Locator
+    private By createEmployeeButton = By.xpath("/html/body/div[1]/main/div[2]/div[2]/form/div[4]/button");
 
-
-//    public Homepage perfromLogin(String userName, String password){
-//        driver.findElement(txtUsername).sendKeys(userName);
-//        driver.findElement(txtPassword).sendKeys(password);
-//        driver.findElement(btnLogin).click();
-//        return new Homepage(driver);
-//    }
-
-    public LoginPage performDropdown(String locator, String dropDownText){
+    //Action Method
+    public void performDropdown(String locator, String dropDownText){
         Select select = new Select(driver.findElement(By.id(locator)));
         select.selectByContainsVisibleText(dropDownText);
-        return new LoginPage(driver);
     }
 
-    public LoginPage performEmployeeCreation(By locator, String value){
-        driver.findElement(locator).sendKeys(value);
-        return new LoginPage(driver);
+    public void performEmployeeCreation(String locator, String value){
+        driver.findElement(By.id(locator)).sendKeys(value);
     }
 
-    public LoginPage performClick(By locator){
-        driver.findElement(locator).click();
-        return new LoginPage(driver);
+    public void performClick(){
+        driver.findElement(createEmployeeButton).click();
     }
-
-
 
 }
