@@ -1,12 +1,14 @@
-//package GettingStarted;
+//package TestPackages;
+//
 //import extension.UIElementExtension;
 //import org.openqa.selenium.By;
 //import org.openqa.selenium.WebDriver;
 ////import org.openqa.selenium.chrome.ChromeDriver;
 ////import org.openqa.selenium.chrome.ChromeOptions;
 //import org.openqa.selenium.firefox.FirefoxDriver;
+//import pages.Homepage;
 //
-//public class TestFile3 {
+//public class TestFile4{
 //
 //    public static void main(String[] args){
 //
@@ -18,6 +20,19 @@
 //        createEmployee(driver);
 //        searchEmployee(driver);
 //        performDeletion(driver);
+//
+//        Homepage homepage = new Homepage(driver);
+//
+//        //Page Navigation Concept
+//        var loginPage = homepage.clickLogin();
+//        loginPage.performLogin("username", "password");
+//
+//
+////        EmployeeListPage employeeListPage = new EmployeeListPage(driver);
+////        CreateEmployeePage createEmployeePage = new CreateEmployeePage(driver);
+//
+////        var employeeList = homepage.clickEmployeeList();
+////        employeeList.performEmployeeClickingEmployeeButton();
 //
 //        driver.quit();
 //        System.out.println("The automation has finished Exiting...");

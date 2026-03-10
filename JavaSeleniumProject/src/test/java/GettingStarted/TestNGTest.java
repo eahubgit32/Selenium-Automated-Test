@@ -2,20 +2,26 @@ package GettingStarted;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.*;
 import pages.Homepage;
 
+public class TestNGTest {
 
-public class SeleniumTest {
 
-    public static void main(String[] args){
+    private WebDriver driver;
 
-        WebDriver driver = new FirefoxDriver();
 
+    @BeforeTest
+    public void beforeTest(){
+        driver = new FirefoxDriver();
         driver.navigate().to("http://eaapp.somee.com");
+    }
+
+    @Test
+    public void runTest(){
 
         Homepage homepage = new Homepage(driver);
-        //Page Navigation Concept
-        // 1. Log in
+
         var loginPage = homepage.clickLogin();
         homepage = loginPage.performLogin("admin", "password");
 
@@ -27,11 +33,15 @@ public class SeleniumTest {
         deletionOfEmployee.performDeletion("Sora");
         System.out.println("Deleted an Account...");
         System.out.println("Performing Creation of an Account...");
+
         // 4. Creating Employee Action
         var createEmployeePage = employeeListPage.clickCreationOfNewEmployeeButton();
         createEmployeePage.performEmployeeCreation("Sora", "24", "sora@mail.com", "24", "2000", "Junior");
 
-        System.out.println("Created an Account...");
+    }
+
+    @AfterTest
+    public void afterTest(){
         driver.quit();
         System.out.println("The automation has finished Exiting...");
     }

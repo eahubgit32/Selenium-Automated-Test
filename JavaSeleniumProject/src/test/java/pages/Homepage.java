@@ -1,7 +1,11 @@
 package pages;
 
+import extension.UIElementExtension;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class Homepage {
 
@@ -9,25 +13,28 @@ public class Homepage {
 
     public Homepage(WebDriver driver){
         this.driver = driver;
+        PageFactory.initElements(driver, this);
 
     }
 
-    private By linkLogin = By.linkText("Login");
-    private By linkEmployeeList = By.xpath("/html/body/div[1]/main/div[1]/div[4]/div[1]/div[1]/a");
-    private By employeeListSearchBox = By.name("searchTerm");
+    //locators Refactored
+    @FindBy(linkText = "Login")
+    private WebElement linkLogin;
+
+    @FindBy(xpath = "/html/body/div[1]/main/div[1]/div[4]/div[1]/div[1]/a")
+    private WebElement linkEmployeeList;
+
+    @FindBy(name = "searchTerm")
+    private WebElement employeeListSearchBox;
+
 
     public LoginPage clickLogin(){
-        driver.findElement(linkLogin).click();
+        UIElementExtension.performClick(linkLogin);
         return new LoginPage(driver);
     }
 
     public EmployeeListPage clickEmployeeList(){
-        driver.findElement(linkEmployeeList).click();
+        UIElementExtension.performClick(linkEmployeeList);
         return new EmployeeListPage(driver);
-    }
-
-    public DeletionOfEmployee clickSearchEmployeeList(){
-        driver.findElement(employeeListSearchBox);
-        return new DeletionOfEmployee(driver);
     }
 }
