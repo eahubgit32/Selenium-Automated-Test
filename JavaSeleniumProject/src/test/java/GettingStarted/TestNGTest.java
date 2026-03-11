@@ -1,5 +1,6 @@
 package GettingStarted;
 
+import model.CreateEmployee;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
@@ -17,8 +18,9 @@ public class TestNGTest {
         driver.navigate().to("http://eaapp.somee.com");
     }
 
-    @Test
-    public void runTest(){
+    //@Parameters({"UserName", "Password"})
+    @Test(dataProvider = "CreateEmployeeWithCustomData")
+    public void testWithDataProviderWithCustomType(CreateEmployee createEmployee){
 
         Homepage homepage = new Homepage(driver);
 
@@ -30,15 +32,34 @@ public class TestNGTest {
 
         // 3. Checking if the name is not present in the EmployeeList
         var deletionOfEmployee = employeeListPage.clickSearchOfEmployeeButton();
-        deletionOfEmployee.performDeletion("Sora");
+        deletionOfEmployee.performDeletion(createEmployee.getName());
         System.out.println("Deleted an Account...");
         System.out.println("Performing Creation of an Account...");
 
         // 4. Creating Employee Action
         var createEmployeePage = employeeListPage.clickCreationOfNewEmployeeButton();
-        createEmployeePage.performEmployeeCreation("Sora", "24", "sora@mail.com", "24", "2000", "Junior");
+        createEmployeePage.performEmployeeCreation(createEmployee.getName(), createEmployee.getDurationWorked(), createEmployee.getEmail(), createEmployee.getAge(), createEmployee.getSalary(), createEmployee.getRole());
 
     }
+
+    @DataProvider(name = "CreateEmployee")
+    public static Object[][] createEmployee(){
+        return new Object[][]{
+                new Object[]{
+                        "test", "23", "TestUser@mail.com", "25", "30022", "Junior"
+                }
+        };
+    }
+
+    @DataProvider(name = "CreateEmployeeWithCustomData")
+    public static CreateEmployee[] createEmployeeDataWithCustomType(){
+        return new CreateEmployee[]{
+                new CreateEmployee("FromCustomData", "16", "CustomData@mail.com", "25000", "Junior", "23")
+        };
+}
+
+
+
 
     @AfterTest
     public void afterTest(){
